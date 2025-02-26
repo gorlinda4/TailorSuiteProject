@@ -24,6 +24,10 @@ nav a:hover {
     background-color: #4CAF50;
 }
 
+h2{
+    text-align: center;
+}
+
 main {
     padding: 2rem;
 }

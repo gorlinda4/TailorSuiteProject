@@ -1,4 +1,4 @@
-<!-- booking.html -->
+<!-- booking.html 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,5 +36,93 @@
     </footer>
 
     <script src="/TailorSuiteProject/script/requests.js"></script>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/TailorSuiteProject/styles/general.css">
+    <title>Book Appointment</title>
+    <style>
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Book an Appointment</h1>
+        <nav>
+            <a href="/TailorSuiteProject/index/home.html">Home</a>
+            <a href="/TailorSuiteProject/index/orders.html">Manage Orders</a>
+            <a href="/TailorSuiteProject/index/payments.html">Manage Payments</a>
+            <a href="/TailorSuiteProject/index/notifications.html">Notifications</a>
+            <a href="/TailorSuiteProject/index/feedback.html">Feedback</a>
+            <a href="/TailorSuiteProject/index/admin.html">Admin Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Appointment Booking</h2>
+        <form id="bookingForm">
+            <label for="clientName">Your Name:</label>
+            <input type="text" id="clientName" name="clientName" required>
+            <label for="appointmentDate">Appointment Date:</label>
+            <input type="date" id="appointmentDate" name="appointmentDate" required>
+            <button type="submit">Book Now</button>
+            <div id="message"></div>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TailorSuite Management System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form data
+            const clientName = document.getElementById('clientName').value;
+            const appointmentDate = document.getElementById('appointmentDate').value;
+
+            // Validate input
+            if (!clientName || !appointmentDate) {
+                showMessage('All fields are required.', 'error');
+                return;
+            }
+
+            // Submit form data via AJAX
+            const formData = new FormData();
+            formData.append('clientName', clientName);
+            formData.append('appointmentDate', appointmentDate);
+
+            fetch('/TailorSuiteProject/php/submit_booking.php', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showMessage(data.message, 'success');
+                    document.getElementById('bookingForm').reset(); // Clear form
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            })
+            .catch(error => {
+                showMessage('An error occurred. Please try again.', 'error');
+            });
+        });
+
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = message;
+            messageDiv.className = type;
+        }
+    </script>
 </body>
 </html>

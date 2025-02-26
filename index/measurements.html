@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/TailorSuiteProject/styles/general.css">
     <title>Submit Measurements - Tailoring Services</title>
+    <style>
+        .error { color: red; }
+        .success { color: green; }
+    </style>
 </head>
 <body>
     <header>
         <h1>Submit Your Measurements</h1>
         <nav>
-            <a href="/TailorSuiteProject/index/customer_dashboard.html"><a href="/TailorSuiteProject/index/home.html">Back to Dashboard</a></a>
+            <a href="/TailorSuiteProject/index/customer_dashboard.html">Back to Dashboard</a>
             <a href="/TailorSuiteProject/index/logout.html">Logout</a>
         </nav>
     </header>
 
     <main>
         <div class="form-container">
-            <form action="/TailorSuiteProject/php/submit_measurements.php" method="POST">
+            <form id="measurementForm">
                 <div class="form-group">
                     <label for="customerName">Customer Name:</label>
                     <input type="text" id="customerName" name="customerName" required>
@@ -70,6 +74,7 @@
                 </div>
 
                 <button type="submit">Submit Measurements</button>
+                <div id="message"></div>
             </form>
         </div>
     </main>
@@ -77,5 +82,67 @@
     <footer>
         <p>&copy; 2025 TailorSuite Management System. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.getElementById('measurementForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Validate form fields
+            const customerName = document.getElementById('customerName').value;
+            const customerId = document.getElementById('customerId').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            if (!customerName || !customerId || !email || !phone) {
+                showMessage('All fields are required.', 'error');
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                showMessage('Invalid email address.', 'error');
+                return;
+            }
+
+            if (!validatePhone(phone)) {
+                showMessage('Invalid phone number.', 'error');
+                return;
+            }
+
+            // Submit form data via AJAX
+            const formData = new FormData(this);
+            fetch('/TailorSuiteProject/php/submit_measurements.php', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showMessage(data.message, 'success');
+                    document.getElementById('measurementForm').reset(); // Clear form
+                } else {
+                    showMessage(data.message, 'error');
+                }
+            })
+            .catch(error => {
+                showMessage('An error occurred. Please try again.', 'error');
+            });
+        });
+
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        function validatePhone(phone) {
+            const regex = /^[0-9]{10,15}$/;
+            return regex.test(phone);
+        }
+
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = message;
+            messageDiv.className = type;
+        }
+    </script>
 </body>
 </html>
