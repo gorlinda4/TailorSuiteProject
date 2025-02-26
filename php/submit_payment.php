@@ -3,9 +3,10 @@
 $servername = "localhost";
 $username = "root"; // use your database username
 $password = ""; // use your database password
-$dbname = "tailoring"; // database name
+$dbname = "tailorsuite"; // database name
 
 $conn = new mysqli($servername, $username, $password, $dbname);
+include '/TailorSuiteProject/php/db_connect.php';
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

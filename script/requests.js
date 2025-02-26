@@ -1,4 +1,4 @@
-// script.js
+// requests.js
 document.getElementById('startOrder').addEventListener('click', function() {
     alert('Order process started!');
 });

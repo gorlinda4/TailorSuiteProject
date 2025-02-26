@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/general.css">
+    <link rel="stylesheet" href="/TailorSuiteProject/styles/general.css">
     <title>Submit Measurements - Tailoring Services</title>
 </head>
 <body>
     <header>
         <h1>Submit Your Measurements</h1>
         <nav>
-            <a href="customer_dashboard.html"><a href="home.html">Back to Dashboard</a></a>
-            <a href="logout.html">Logout</a>
+            <a href="/TailorSuiteProject/index/customer_dashboard.html"><a href="/TailorSuiteProject/index/home.html">Back to Dashboard</a></a>
+            <a href="/TailorSuiteProject/index/logout.html">Logout</a>
         </nav>
     </header>
 
     <main>
         <div class="form-container">
-            <form action="submit_measurements.php" method="POST">
+            <form action="/TailorSuiteProject/php/submit_measurements.php" method="POST">
                 <div class="form-group">
                     <label for="customerName">Customer Name:</label>
                     <input type="text" id="customerName" name="customerName" required>

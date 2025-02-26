@@ -37,6 +37,73 @@ footer {
     section {
         margin-bottom: 40px;
     }
+
+    /* General Section Styling */
+section {
+    padding: 2rem;
+    text-align: center;
+    background-color: #f9f9f9;
+    margin: 2rem 0;
+}
+
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/* Grid Layout for Fabrics and Designs */
+.fabric-grid, .design-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+/* Individual Item Styling */
+.fabric-item, .design-item {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 300px;
+    text-align: center;
+}
+
+.fabric-item:hover, .design-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styling */
+.fabric-item img, .design-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Text Styling */
+.fabric-item p, .design-item p {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 1rem 0;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .fabric-grid, .design-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fabric-item, .design-item {
+        width: 80%;
+    }
+}
     
     .service-card {
         background-color: #fff;
