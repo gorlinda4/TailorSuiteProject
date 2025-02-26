@@ -1,4 +1,3 @@
-<!-- notifications.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/TailorSuiteProject/styles/general.css">
     <title>Notifications</title>
+    <style>
+        /* Notification badge styling */
+        .badge {
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            margin-left: 5px;
+            display: none; /* Hide by default */
+        }
+
+        /* Notification list styling */
+        .notification {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .notification.unread {
+            background-color: #f9f9f9;
+        }
+        .notification.read {
+            background-color: #fff;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -15,6 +38,10 @@
             <a href="/TailorSuiteProject/index/orders.html">Manage Orders</a>
             <a href="/TailorSuiteProject/index/payments.html">Manage Payments</a>
             <a href="/TailorSuiteProject/index/booking.html">Book Appointment</a>
+            <a href="/TailorSuiteProject/index/notifications.html">
+                Notifications
+                <span id="notificationBadge" class="badge">0</span> <!-- Notification badge -->
+            </a>
             <a href="/TailorSuiteProject/index/feedback.html">Feedback</a>
             <a href="/TailorSuiteProject/index/admin.html">Admin Login</a>
         </nav>
@@ -23,7 +50,7 @@
     <main>
         <h2>Notifications</h2>
         <div id="notificationList">
-            <p>No new notifications.</p>
+            <p>Loading notifications...</p>
         </div>
     </main>
 
@@ -31,6 +58,62 @@
         <p>&copy; 2025 TailorSuite Management System. All rights reserved.</p>
     </footer>
 
-    <script src="/TailorSuiteProject/script/requests.js"></script>
+    <script>
+        // Function to fetch and update the unread notifications count
+        function updateNotificationBadge() {
+            fetch('/TailorSuiteProject/php/fetch_unread_notifications_count.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const badge = document.getElementById('notificationBadge');
+                        if (data.unread_count > 0) {
+                            badge.textContent = data.unread_count;
+                            badge.style.display = 'inline-block'; // Show the badge
+                        } else {
+                            badge.style.display = 'none'; // Hide the badge
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching unread notifications count:', error);
+                });
+        }
+
+        // Function to fetch and display notifications
+        function fetchNotifications() {
+            fetch('/TailorSuiteProject/php/fetch_notifications.php')
+                .then(response => response.json())
+                .then(data => {
+                    const notificationList = document.getElementById('notificationList');
+                    if (data.success && data.notifications.length > 0) {
+                        notificationList.innerHTML = ''; // Clear loading message
+                        data.notifications.forEach(notification => {
+                            const notificationDiv = document.createElement('div');
+                            notificationDiv.className = `notification ${notification.is_read ? 'read' : 'unread'}`;
+                            notificationDiv.innerHTML = `
+                                <p><strong>${notification.type}</strong>: ${notification.message}</p>
+                                <small>${new Date(notification.created_at).toLocaleString()}</small>
+                            `;
+                            notificationList.appendChild(notificationDiv);
+                        });
+
+                        // Update the notification badge after marking notifications as read
+                        updateNotificationBadge();
+                    } else {
+                        notificationList.innerHTML = '<p>No new notifications.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching notifications:', error);
+                    document.getElementById('notificationList').innerHTML = '<p>Error loading notifications.</p>';
+                });
+        }
+
+        // Fetch notifications and update the badge when the page loads
+        fetchNotifications();
+
+        // Update the badge every 5 seconds
+        setInterval(updateNotificationBadge, 5000);
+    </script>
 </body>
 </html>

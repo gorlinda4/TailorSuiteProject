@@ -37,6 +37,15 @@ if (!$stmt) {
 $stmt->bind_param("ss", $clientName, $appointmentDate);
 
 if ($stmt->execute()) {
+    // Add a notification
+    $notificationType = 'appointment';
+    $notificationMessage = "New appointment booked by $clientName on $appointmentDate.";
+    $notificationSql = "INSERT INTO notifications (type, message) VALUES (?, ?)";
+    $notificationStmt = $conn->prepare($notificationSql);
+    $notificationStmt->bind_param("ss", $notificationType, $notificationMessage);
+    $notificationStmt->execute();
+    $notificationStmt->close();
+
     echo json_encode(['success' => true, 'message' => 'Appointment booked successfully.']);
 } else {
     echo json_encode(['success' => false, 'message' => 'Error booking appointment: ' . $stmt->error]);

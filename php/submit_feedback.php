@@ -1,28 +1,56 @@
 <?php
-// submit_feedback.php
+header('Content-Type: application/json');
+
+// Database connection
 $servername = "localhost";
-$username = "root"; // use your database username
-$password = ""; // use your database password
-$dbname = "tailorsuite"; // database name
+$username = "root"; // Replace with your database username
+$password = ""; // Replace with your database password
+$dbname = "tailorsuite"; // Replace with your database name
 
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-include '/TailorSuiteProject/php/db_connect.php';
 
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die(json_encode(['success' => false, 'message' => 'Database connection failed: ' . $conn->connect_error]));
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $customerName = $_POST['customerName'];
-    $review = $_POST['review'];
+// Get form data
+$customerName = $_POST['customerName'];
+$review = $_POST['review'];
 
-    $sql = "INSERT INTO feedback (customer_name, review) VALUES ('$customerName', '$review')";
-
-    if ($conn->query($sql) === TRUE) {
-        header('Location: feedback.html?success=Feedback submitted successfully');
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+// Validate input data
+if (empty($customerName) || empty($review)) {
+    echo json_encode(['success' => false, 'message' => 'All fields are required.']);
+    exit;
 }
+
+// Insert feedback into the database
+$sql = "INSERT INTO feedback (customer_name, review) VALUES (?, ?)";
+$stmt = $conn->prepare($sql);
+
+if (!$stmt) {
+    echo json_encode(['success' => false, 'message' => 'Failed to prepare SQL statement: ' . $conn->error]);
+    exit;
+}
+
+$stmt->bind_param("ss", $customerName, $review);
+
+if ($stmt->execute()) {
+    // Add a notification
+    $notificationType = 'feedback';
+    $notificationMessage = "New feedback submitted by $customerName.";
+    $notificationSql = "INSERT INTO notifications (type, message) VALUES (?, ?)";
+    $notificationStmt = $conn->prepare($notificationSql);
+    $notificationStmt->bind_param("ss", $notificationType, $notificationMessage);
+    $notificationStmt->execute();
+    $notificationStmt->close();
+
+    echo json_encode(['success' => true, 'message' => 'Feedback submitted successfully.']);
+} else {
+    echo json_encode(['success' => false, 'message' => 'Error submitting feedback: ' . $stmt->error]);
+}
+
+$stmt->close();
 $conn->close();
 ?>
