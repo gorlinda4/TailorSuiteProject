@@ -21,13 +21,13 @@ $password = $_POST['password'];
 $role = 'customer'; // Default role for registration
 
 // Validate input data
-if (empty($username) || empty($password)) {
-    echo json_encode(['success' => false, 'message' => 'All fields are required.']);
+if (empty($username)) {
+    echo json_encode(['success' => false, 'message' => 'Username is required.']);
     exit;
 }
 
-// Hash the password
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+// Hash the password if provided
+$hashedPassword = !empty($password) ? password_hash($password, PASSWORD_DEFAULT) : NULL;
 
 // Insert user into the database
 $sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";

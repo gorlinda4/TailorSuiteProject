@@ -6,8 +6,84 @@
     <link rel="stylesheet" href="/TailorSuiteProject/styles/general.css">
     <title>Register</title>
     <style>
+        /* Error and success message styling */
         .error { color: red; }
         .success { color: green; }
+
+        /* Register container styling */
+        .register-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Form group styling */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        /* Button styling */
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #4CAF50;
+        }
+
+        /* Login link styling */
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-link a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Message styling */
+        #message {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -17,7 +93,7 @@
 
     <main>
         <div class="register-container">
-            <form id="registerForm">
+            <form id="registerForm" action="/TailorSuiteProject/php/register.php" method="POST">
                 <h2>Create an Account</h2>
                 <div class="form-group">
                     <label for="username">Username:</label>
@@ -25,19 +101,19 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password"> <!-- Password is optional -->
                 </div>
                 <button type="submit">Register</button>
                 <div id="message"></div>
             </form>
             <div class="login-link">
-                <a href="/TailorSuiteProject/index/login.html">Already have an account? Login</a>
+                <a href="/TailorSuiteProject/index/admin.html">Already have an account? Login</a>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2023 Tailoring Services</p>
+        <p>&copy; 2025 TailorSuite Management System. All rights reserved.</p>
     </footer>
 
     <script>
@@ -48,9 +124,9 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Validate input
-            if (!username || !password) {
-                showMessage('All fields are required.', 'error');
+            // Validate input (only username is required)
+            if (!username) {
+                showMessage('Username is required.', 'error');
                 return;
             }
 
