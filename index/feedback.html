@@ -1,0 +1,40 @@
+<!-- feedback.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/general.css">
+    <title>Feedback</title>
+</head>
+<body>
+    <header>
+        <h1>Customer Feedback</h1>
+        <nav>
+            <a href="/index/home.html">Home</a>
+            <a href="/index/orders.html">Manage Orders</a>
+            <a href="/index/payments.html">Manage Payments</a>
+            <a href="/index/booking.html">Book Appointment</a>
+            <a href="/index/notifications.html">Notifications</a>
+            <a href="/index/admin.html">Admin Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Leave Your Feedback</h2>
+        <form id="feedbackForm" action="submit_feedback.php" method="POST">
+            <label for="customerName">Your Name:</label>
+            <input type="text" id="customerName" name="customerName" required>
+            <label for="review">Your Review:</label>
+            <textarea id="review" name="review" required></textarea>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TailorSuite Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

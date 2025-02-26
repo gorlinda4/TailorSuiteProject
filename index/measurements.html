@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/general.css">
+    <title>Submit Measurements - Tailoring Services</title>
+</head>
+<body>
+    <header>
+        <h1>Submit Your Measurements</h1>
+        <nav>
+            <a href="customer_dashboard.html"><a href="home.html">Back to Dashboard</a></a>
+            <a href="logout.html">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <form action="submit_measurements.php" method="POST">
+                <div class="form-group">
+                    <label for="customerName">Customer Name:</label>
+                    <input type="text" id="customerName" name="customerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerId">Customer ID:</label>
+                    <input type="number" id="customerId" name="customerId" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <h3>Measurements</h3>
+                <div class="form-group">
+                    <label for="burst">Burst:</label>
+                    <input type="number" id="burst" name="burst" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="waist">Waist:</label>
+                    <input type="number" id="waist" name="waist" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="length">Length:</label>
+                    <input type="number" id="length" name="length" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="hip">Hip:</label>
+                    <input type="number" id="hip" name="hip" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="thigh">Thigh:</label>
+                    <input type="number" id="thigh" name="thigh" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="inseam">Inseam:</label>
+                    <input type="number" id="inseam" name="inseam" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="sleeve">Sleeve Length:</label>
+                    <input type="number" id="sleeve" name="sleeve" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="shoulder">Shoulder Width:</label>
+                    <input type="number" id="shoulder" name="shoulder" step="0.1" required>
+                </div>
+
+                <button type="submit">Submit Measurements</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TailorSuite Management System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

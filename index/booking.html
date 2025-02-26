@@ -1,0 +1,40 @@
+<!-- booking.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/general.css">
+    <title>Book Appointment</title>
+</head>
+<body>
+    <header>
+        <h1>Book an Appointment</h1>
+        <nav>
+            <a href="/index/home.html">Home</a>
+            <a href="/index/orders.html">Manage Orders</a>
+            <a href="/index/payments.html">Manage Payments</a>
+            <a href="/index/notifications.html">Notifications</a>
+            <a href="f/index/eedback.html">Feedback</a>
+            <a href="/index/admin.html">Admin Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Appointment Booking</h2>
+        <form id="bookingForm">
+            <label for="clientName">Your Name:</label>
+            <input type="text" id="clientName" required>
+            <label for="appointmentDate">Appointment Date:</label>
+            <input type="date" id="appointmentDate" required>
+            <button type="submit">Book Now</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TailorSuite Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

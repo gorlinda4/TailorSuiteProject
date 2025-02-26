@@ -1,0 +1,105 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/home.css">
+    <title>Tailoring and Design Management System</title>
+    <style>
+        #map {
+            height: 300px; /* Set the height of the map */
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .banner { 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="banner">Discover Elegance in Every Stitch</h1>
+        <nav>
+            <a href="/index/orders.html">Manage Orders</a>
+            <a href="/index/payments.html">Manage Payments</a>
+            <a href="/index/booking.html">Book Appointment</a>
+            <a href="/index/notifications.html">Notifications</a>
+            <a href="/index/feedback.html">Feedback</a>
+            <a href="/index/admin.html">Admin Login</a>
+        </nav>
+    </header>
+
+    <main>
+       <!-- <section>
+            <h2>Your Custom Tailoring Experience</h2>
+            <p>Choose from a range of fabrics and designs.</p>
+            <button id="startOrder">Start Your Order</button>
+        </section>
+        <div id="map"></div>
+    -->
+    <section id="welcome">
+        <h2>Welcome to TailorSuite</h2>
+        <p>Your one-stop solution for all tailoring and design needs. <a href="measurements.html">Enter Your Measurements Here</a></p>
+    </section>
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="service-card">
+            <h3>Custom Tailoring</h3>
+            <p>Get your clothes tailored to perfection with our expert services.</p>
+        </div>
+        <div class="service-card">
+            <h3>Design Consultation</h3>
+            <p>Consult with our designers to create unique and stylish outfits.</p>
+        </div>
+        <div class="service-card">
+            <h3>Repairs and Alterations</h3>
+            <p>We offer repairs and alterations to keep your clothes looking great.</p>
+        </div>
+    </section>
+
+    <section id="contact-info">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, please reach out to us:</p>
+        <ul>
+            <li>Email: <a href="mailto:gorlinda4@gmail.com">gorlinda4@gmail.com</a></li>
+            <li>Phone: +254-700-000000</li>
+            <li>Address: Tailoring Services HQ, Nairobi, Kenya</li>
+        </ul>
+    </section>
+    <section id="map">
+        <h2>Our Location</h2>
+        <div id="map"></div>
+    </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TailorSuite Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function initMap() {
+            const location = { lat: -34.397, lng: 150.644 }; // Sample coordinates
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: location,
+            });
+            new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+        }
+    </script>
+    <script async defer 
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu4r0GwXJS7_HvqAvOscQ-Zbi1DdOtK2g&callback=initMap">
+    </script>
+</body>
+</html>
