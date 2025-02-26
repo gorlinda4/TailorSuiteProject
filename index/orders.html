@@ -1,4 +1,4 @@
-<!-- orders.html -->
+<!-- orders.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,10 +31,10 @@
                 <option value="cotton">Cotton</option>
                 <option value="silk">Silk</option>
             </select>
-           <!--
+           
              <img src="/images/cotton fabric.jpg" alt="Cotton Fabric" style="width:100px;">
             <img src="/images/silk.jpg" alt="Silk Fabric" style="width:100px;">
-        -->
+        
             <button type="submit">Submit Order</button>
         </form>
     </main>
@@ -44,5 +44,77 @@
     </footer>
 
     <script src="/TailorSuiteProject/script/requests.js"></script>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/TailorSuiteProject/styles/home.css">
+    <link rel="stylesheet" href="/TailorSuiteProject/styles/order.css">
+    <title>TailorSuite - Place an Order</title>
+</head>
+<body>
+    <header>
+        <h1 class="banner">Discover Elegance in Every Stitch</h1>
+        <nav>
+            <a href="/TailorSuiteProject/index/orders.html">Manage Orders</a>
+            <a href="/TailorSuiteProject/index/payments.html">Manage Payments</a>
+            <a href="/TailorSuiteProject/index/booking.html">Book Appointment</a>
+            <a href="/TailorSuiteProject/index/notifications.html">Notifications</a>
+            <a href="/TailorSuiteProject/index/feedback.html">Feedback</a>
+            <a href="/TailorSuiteProject/index/admin.html">Admin Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="order-form">
+            <h2>Place Your Order</h2>
+            <form action="/TailorSuiteProject/php/submit_order.php" method="POST">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="fabric">Select Fabric:</label>
+                <select id="fabric" name="fabric" required>
+                    <option value="cotton">Cotton</option>
+                    <option value="silk">Silk</option>
+                    <option value="linen">Linen</option>
+                </select>
+
+                <label for="design">Select Design:</label>
+                <select id="design" name="design" required>
+                    <option value="design1">Design 1</option>
+                    <option value="design2">Design 2</option>
+                    <option value="design3">Design 3</option>
+                </select>
+
+                <label for="measurements">Measurements (in cm):</label>
+                <textarea id="measurements" name="measurements" required></textarea>
+
+                <label for="delivery">Delivery Option:</label>
+                <select id="delivery" name="delivery" required>
+                    <option value="pickup">Pickup</option>
+                    <option value="shipping">Shipping</option>
+                </select>
+
+                <button type="submit">Place Order</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TailorSuite Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="/TailorSuiteProject/scripts/request.js"></script>
 </body>
 </html>
