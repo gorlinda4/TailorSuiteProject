@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,7 @@
     <title>Tailoring and Design Management System</title>
     <style>
         #map {
-            height: 300px; /* Set the height of the map */
+            height: 300px;
             width: 100%;
             border-radius: 8px;
             margin-top: 2rem;
@@ -37,13 +36,6 @@
     </header>
 
     <main>
-       <!-- <section>
-            <h2>Your Custom Tailoring Experience</h2>
-            <p>Choose from a range of fabrics and designs.</p>
-            <button id="startOrder">Start Your Order</button>
-        </section>
-        <div id="map"></div>
-    -->
     <section id="welcome">
         <h2>Welcome to TailorSuite</h2>
         <p>Your one-stop solution for all tailoring and design needs. <a href="/TailorSuiteProject/index/measurements.html">Enter Your Measurements Here</a></p>
@@ -125,7 +117,7 @@
     <script src="/TailorSuiteProject/scripts/request.js"></script>
     <script>
         function initMap() {
-            const location = { lat: -34.397, lng: 150.644 }; // Sample coordinates
+            const location = { lat: -34.397, lng: 150.644 };
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 8,
                 center: location,
