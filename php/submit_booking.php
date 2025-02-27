@@ -3,9 +3,9 @@ header('Content-Type: application/json');
 
 // Database connection
 $servername = "localhost";
-$username = "root"; // Replace with your database username
-$password = ""; // Replace with your database password
-$dbname = "tailorsuite"; // Replace with your database name
+$username = "root"; 
+$password = ""; 
+$dbname = "tailorsuite"; 
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

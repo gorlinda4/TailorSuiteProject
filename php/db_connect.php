@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "root"; // Default XAMPP username
-$password = ""; // Default XAMPP password
+$username = "root";
+$password = "";
 $dbname = "tailorsuite";
 
 // Create connection

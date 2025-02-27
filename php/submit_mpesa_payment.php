@@ -3,10 +3,10 @@
 include __DIR__ . '/db_connect.php';
 
 // MPESA API Credentials
-$consumerKey = 'dYk4B9uVi0zGXv6t14zWNGJAGdd3Iua5uvGaVjpub58LZ5j8'; // Replace with your Consumer Key
-$consumerSecret = '4z4rDZrIBMLAJQPa3vnRRZHyBXl2VjeCdRJu34IRc7bMVSTnOXiQn0XZdWLVovPQ'; // Replace with your Consumer Secret
-$shortcode = '600978'; // Replace with your Paybill or Till Number
-$passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'; // Replace with your Passkey
+$consumerKey = 'dYk4B9uVi0zGXv6t14zWNGJAGdd3Iua5uvGaVjpub58LZ5j8'; 
+$consumerSecret = '4z4rDZrIBMLAJQPa3vnRRZHyBXl2VjeCdRJu34IRc7bMVSTnOXiQn0XZdWLVovPQ';
+$shortcode = '600978';
+$passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'; 
 
 // Generate Access Token
 $credentials = base64_encode($consumerKey . ':' . $consumerSecret);
@@ -30,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $amount = $input['amount'];
     $phoneNumber = $input['paymentDetails']['phoneNumber'];
 
-    // Format phone number (ensure it starts with 254)
     $phoneNumber = '254' . substr($phoneNumber, -9);
 
     // Generate Timestamp
@@ -41,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // STK Push Request
     $stkUrl = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
-    $callbackUrl = 'https://abc123.ngrok.io/callback.php'; // Replace with your callback URL
+    $callbackUrl = 'https://abc123.ngrok.io/callback.php'; 
 
     $stkData = [
         'BusinessShortCode' => $shortcode,
